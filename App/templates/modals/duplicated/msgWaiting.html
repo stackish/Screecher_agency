@@ -1,0 +1,34 @@
+{% extends "modals/duplicated/base.html" %}
+{% block center %}
+modal-dialog-centered
+{% endblock center %}
+
+<!--Modal ID -->
+ {% block modal-id %}
+ id="msgWaitingModal"
+ 
+ {% endblock modal-id %}
+
+<!--Modal Title -->
+
+{% block modal-title %}
+<i class="text-danger far fa-times-circle"></i>&nbsp;&nbsp; Sorry !
+{% endblock modal-title %}
+
+
+<!--Modal Body -->
+
+{% block modal-body %}
+ <div class="text-center">
+    <i class="text-danger far fa-times-circle fa-5x"></i>
+ </div>
+
+ <div class="text-danger mb-3 mt-3" style="font-size: 18px;">We already have your resume in our DB.</div>
+ <div class="mb-3" style="font-size: 13px;">
+Note: You have already signup for our waiting list. wait for a new job openings to open.
+</div>
+
+{% endblock modal-body %}
+
+<!--Btn action (footer) -->
+

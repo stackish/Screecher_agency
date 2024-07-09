@@ -1,0 +1,44 @@
+{% extends "modals/others/base.html" %}
+
+
+<!--Modal ID -->
+ {% block modal-id %}
+ id="messageModal"
+ 
+ {% endblock modal-id %}
+
+<!--Modal Title -->
+
+{% block modal-title %}
+<i class="fas fa-envelope"></i>&nbsp;&nbsp; Message
+{% endblock modal-title %}
+
+
+<!--css id -->
+
+{% block css-id %}
+id="modal-message"
+{% endblock css-id %}
+<!--Modal Body -->
+
+{% block modal-body %}
+ <form action="{% url 'add_message' %}" enctype="multipart/form-data" method='POST'>
+        {% csrf_token %}
+       
+          <div class="form-group">
+            <textarea name="message" id="message" class="form-control" rows="10" maxlength="1000" required placeholder="Send us a message..."></textarea>
+          </div>
+
+          <div class="d-grid gap-2 mb-3 mt-3">
+            <button class="btn btn-warning" type="submit">Send message &nbsp;&nbsp; <i class="fas fa-paper-plane"></i></button>
+          </div>
+      
+      </form>
+    
+
+{% endblock modal-body %}
+
+<!-- (footer) -->
+
+{% block footer %}
+{% endblock footer %}

@@ -1,0 +1,191 @@
+ {% extends "App/base.html" %} 
+
+<!--page title-->
+
+ {% block title %}
+    Opportunities
+{% endblock title %}
+
+
+
+
+<!--Navbar for opportunities-->
+{% block navbar-content %}
+<i class="text-warning fas fa-code"></i>&nbsp;&nbsp; Opportunities
+{% endblock navbar-content %}
+
+<!-- Link to navigate between the pages -->
+{% block link %}
+
+<a href="{% url 'home' %}" id="back" title="Go back">
+<i class="text-light fas fa-angle-double-left" ></i>
+</a>
+
+{% endblock link %}
+
+<!--Page content-->
+ {% block content %}
+ {% for vacancy in vacancies %}
+ <div class="container mt-4" style="width: 80%;">
+    <div class="justify-content-center align-item-center row">
+        <h6 class="btn btn-warning"  id="card-title" style="width: 100%; cursor: default;"> 
+            <strong>AVAILABLE JOB OPPORTUNITIES</strong> 
+        </h6>
+        <div class="shadow-lg card p-3 mt-3" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="row">
+                <!--First Button-->
+                <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                    {% if vacancy.frontend == '0' %}
+                        <button class="btn btn-outline-light btn-lg jobs" disabled>
+                     {% else %}
+
+                        <button class="btn btn-outline-warning btn-lg jobs btn-off" data-bs-toggle="modal" data-bs-target="#frontendModal">
+                     {% endif %}   
+                            <i class="fab fa-react fa-5x"></i>
+                            <br><br>Frontend
+                        </button>
+
+
+                    </div>
+                </div>
+                <!--Second Button-->
+                <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                         {% if vacancy.backend == '0' %}
+                        <button class="btn btn-outline-light btn-lg jobs" disabled>
+                        {% else %}
+                        <button class="btn btn-outline-warning btn-lg jobs btn-off" data-bs-toggle="modal" data-bs-target="#backendModal">
+                          {% endif %}  
+                            <i class="fab fa-python fa-5x"></i>
+                            <br><br>Backend
+                        </button>
+
+
+                    </div>
+                </div>
+                 <!--Third Button-->
+                 <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        {% if vacancy.fullstack == '0' %}
+                        <button class="btn btn-outline-light btn-lg jobs" disabled>
+                        {% else %}
+                        <button class="btn btn-outline-warning btn-lg jobs btn-off" data-bs-toggle="modal" data-bs-target="#fullstackModal">
+                            {% endif %}  
+                            <i class="fab fa-node-js fa-5x"></i>
+                            <br><br>Fullstack
+                        </button>
+
+                    </div>
+                </div>
+
+                 <!--Fourth Button-->
+                 <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        {% if vacancy.intern == '0' %}
+                        <button class="btn btn-outline-light btn-lg jobs" disabled>
+                        {% else %}
+                        <button class="btn btn-outline-warning btn-lg jobs btn-off" data-bs-toggle="modal" data-bs-target="#internModal">
+                           {% endif %}  
+                            <i class="fas fa-file-code fa-5x"></i>
+                            <br><br>Intern
+                        </button>
+
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+ </div>
+ <!--Container  Ends here-->
+{% endfor  %}
+
+ <!--Spinner Ajax (backend)-->
+
+<div id="bg-spinner">
+    <div id="position-spinner">
+        <span id="spinner"></span>
+    </div>
+</div>
+
+ <!--Message Box-->
+  <div>
+    <button class="btn btn-warning text-dark pulse txt-sm" data-bs-toggle="modal" data-bs-target="#questionsModal">
+      <i class="fas fa-question fa-2x"></i>
+    </button>
+  </div>
+<!--
+    RULES( Start by Inverse )
+    * all
+    * 3 Vacancies
+    * 2 Vacancies
+    * 1 Vacancy
+
+-->
+
+{% for vacancy in vacancies %}
+<!-- All Vacancies-->
+
+{% if vacancy.frontend == '0'  and vacancy.backend == '0' and vacancy.fullstack  and vacancy.intern == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedAll"></button>
+
+<!-- Three Vacancies-->
+{% elif vacancy.backend == '0'  and vacancy.fullstack == '0' and vacancy.intern  == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedBack_Full_Intern"></button>
+
+{% elif vacancy.frontend == '0'  and vacancy.backend == '0' and vacancy.fullstack  == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedFront_Back_Full"></button>
+
+{% elif vacancy.frontend == '0'  and vacancy.backend == '0' and vacancy.intern  == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedFront_Back_Intern"></button>
+
+{% elif vacancy.frontend == '0'  and vacancy.fullstack == '0' and vacancy.intern  == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedFront_Full_Intern"></button>
+
+
+
+
+<!-- Two Vacancies-->
+{% elif vacancy.backend == '0'  and vacancy.fullstack == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedBack_Full"></button>
+
+{% elif vacancy.backend == '0'  and vacancy.intern == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedBack_Intern"></button>
+
+{% elif vacancy.frontend == '0'  and vacancy.backend == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedFront_Back"></button>
+
+{% elif vacancy.frontend == '0'  and vacancy.fullstack == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedFront_Full"></button>
+
+{% elif vacancy.frontend == '0'  and vacancy.intern == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedFront_Intern"></button>
+
+{% elif vacancy.fullstack == '0'  and vacancy.intern == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closedFull_Intern"></button>
+
+
+
+<!-- One vacancy -->
+{% elif vacancy.backend == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closed_backend"></button>
+
+{% elif vacancy.frontend == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closed_frontend"></button>
+
+{% elif vacancy.fullstack == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closed_fullstack"></button>
+
+{% elif vacancy.intern == '0' %}
+<button id="Mymodal" data-bs-toggle="modal" data-bs-target="#closed_intern"></button>
+{% endif %}
+
+
+
+
+{% endfor %}
+
+<br><br><br><br>
+{% endblock content %}

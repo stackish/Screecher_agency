@@ -1,0 +1,35 @@
+{% extends "modals/duplicated/base.html" %}
+{% block center %}
+modal-dialog-centered
+{% endblock center %}
+
+<!--Modal ID -->
+ {% block modal-id %}
+ id="msgFormModal"
+ 
+ {% endblock modal-id %}
+
+<!--Modal Title -->
+
+{% block modal-title %}
+<i class="text-danger far fa-times-circle"></i>&nbsp;&nbsp; Sorry !
+{% endblock modal-title %}
+
+
+<!--Modal Body -->
+
+{% block modal-body %}
+ <div class="text-center text-primary">
+    <i class="text-danger far fa-times-circle fa-5x"></i>
+ </div>
+
+ <div class="text-danger mb-3 mt-3" style="font-size: 18px;">We already have your resume in our DB.</div>
+ <div class="mb-3" style="font-size: 13px;">
+Note: if you are trying to update your resume, you can get it through the support page.
+<a href="{% url 'support' %}" class="text-danger">Support page</a>
+</div>
+
+{% endblock modal-body %}
+
+<!--Btn action (footer) -->
+

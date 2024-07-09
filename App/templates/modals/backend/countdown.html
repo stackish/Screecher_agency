@@ -1,0 +1,38 @@
+{% extends "modals/backend/base.html" %}
+
+<!--Modal id-->
+{% block modal-id %} id="countdownModal{{countdown.pk}}" {% endblock modal-id %}
+
+
+<!--Modal title-->
+{% block modal-title %} 
+<i class="text-primary far fa-clock"></i>&nbsp;&nbsp; Countdown
+{% endblock modal-title %}
+
+
+
+<!--block form -->
+
+
+{% block form %}
+<form method="POST" action="{% url 'edit_countdown' %}" autocomplete="off">
+    {% csrf_token %}
+    <div class="modal-body">
+        <span class="card p-2 bg-danger text-center text-light mb-5" style="width: 100%;">
+        Countdown for job vacancies
+        </span>
+        
+<!--ID Hidden-->
+<input type="hidden" name="id" value="{{countdown.id}}" readonly>
+<!--ID timer-->
+<div class="input-group mb-4">
+    <input type="text" name="timer" id="timer" class="form-control text-center border-light text-danger" value="{{countdown.timer}}" id="input-timer">
+</div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary btn-sm btn-modal" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-outline-dark btn-sm btn-modal">Save</button>
+</div>
+</form>
+{% endblock form %}

@@ -1,0 +1,37 @@
+ {% extends "modals/forms/base.html" %}
+
+<!--Modal ID-->
+{%  block modal-id %}
+id="frontendModal"
+{%  endblock modal-id %}
+
+<!--Modal TITLE-->
+
+{%  block modal-title %}
+<i class="fab fa-react fa-1x"></i>&nbsp;&nbsp; Frontend opportunity
+{%  endblock modal-title %}
+
+<!--Form Validation-->
+{% block validation %} onsubmit="return validateForm()" {% endblock validation %}
+
+<!--Form action -->
+{% block action %} action="{% url 'email_frontend' %}" {% endblock action %} 
+
+<!-- ========================INPUT ID ==========================-->
+<!--Name-->
+{% block id-name %}  id="name"   {% endblock id-name %} 
+<!--Age-->
+{% block id-age %} id="age"   {% endblock id-age %} 
+<!--Phone-->
+{% block id-email %} id="email"      {% endblock id-email %} 
+<!--Email-->
+{% block id-phone %} id="phone"   {% endblock id-phone %} 
+<!--Address-->
+{% block id-address %} id="address"  {% endblock id-address %} 
+<!--Experience-->
+{% block id-experience %} id="experience"  {% endblock id-experience %} 
+<!--Skills-->
+{% block id-skills %} id="skills"  {% endblock id-skills %} 
+<!--File-->
+{% block id-file %}  id="file"  {% endblock id-file %} 
+
